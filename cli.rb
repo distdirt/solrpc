@@ -75,6 +75,153 @@ class SOLCLI < Thor
     api = SOLAPI.new
     puts JSON.pretty_generate(api.get_epoch_schedule.parsed_response)
   end
+
+  desc "fee_for_message", "get the fee for message"
+  def fee_for_message(msg)
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_fee_for_message(msg).parsed_response)
+  end
+
+  desc "first_available_block", "get the first available block"
+  def first_available_block
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_first_available_block.parsed_response)
+  end
+
+  desc "genesis_hash", "get the genesis hash"
+  def genesis_hash
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_genesis_hash.parsed_response)
+  end
+
+  desc "health", "get the health"
+  def health
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_health.parsed_response)
+  end
+
+  desc "highest_snapshot_slot", "get the highest snapshot slot"
+  def highest_snapshot_slot
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_highest_snapshot_slot.parsed_response)
+  end
+
+  desc "identity", "get the identity"
+  def identity
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_identity.parsed_response)
+  end
+
+  desc "inflation_governor", "get the inflation governor"
+  def inflation_governor
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_inflation_governor.parsed_response)
+  end
+
+  desc "inflation_rate", "get the inflation rate"
+  def inflation_rate
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_inflation_rate.parsed_response)
+  end
+
+  desc "inflation_reward", "get the inflation reward"
+  def inflation_reward
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_inflation_reward.parsed_response)
+  end
+
+  desc "largest_accounts", "get the largest accounts"
+  def largest_accounts
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_largest_accounts.parsed_response)
+  end
+
+  desc "largest_blockhash", "get the largest blockhash"
+  def largest_blockhash
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_largest_blockhash.parsed_response)
+  end
+
+  desc "leader_schedule", "get the leader schedule"
+  def leader_schedule
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_leader_schedule.parsed_response)
+  end
+
+  desc "max_retransmit_slot", "get the max retransmit slot"
+  def max_retransmit_slot
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_max_retransmit_slot.parsed_response)
+  end
+
+  desc "max_shred_insert_slot", "get the max shred insert slot"
+  def max_shred_insert_slot
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_max_shred_insert_slot.parsed_response)
+  end
+
+  desc "minimum_balance_for_rent_exemption", "get the minimum balance for rent exemption"
+  def minimum_balance_for_rent_exemption
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_minimum_balance_for_rent_exemption.parsed_response)
+  end
+
+  desc "multiple_accounts", "get multiple accounts"
+  def multiple_accounts(pubkeys)
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_multiple_accounts(pubkeys).parsed_response)
+  end
+
+  desc "program_accounts", "get the program accounts"
+  def program_accounts(pubk)
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_program_accounts(pubk).parsed_response)
+  end
+
+  desc "recent_performance_samples", "get the recent performance samples"
+  def recent_performance_samples
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_recent_performance_samples.parsed_response)
+  end
+
+  desc "recent_prioritization_fees", "get the recent prioritization fees"
+  def recent_prioritization_fees
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_recent_prioritization_fees.parsed_response)
+  end
+
+  desc "signature_statuses", "get the signature statuses"
+  def signature_statuses(sigs)
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_signature_statuses(sigs).parsed_response)
+  end
+
+  desc "signatures_for_address", "get the signatures for address"
+  def signatures_for_address(addr)
+    api = SOLAPI.new
+    puts JSON.pretty_generate(api.get_signatures_for_address(addr).parsed_response)
+  end
+
+# getSlot
+# getSlotLeader
+# getSlotLeaders
+# getStakeActivation
+# getStakeMinimumDelegation
+# getSupply
+# getTokenAccountBalance
+# getTokenAccountsByDelegate
+# getTokenAccountsByOwner
+# getTokenLargestAccounts
+# getTokenSupply
+# getTransaction
+# getTransactionCount
+# getVersion
+# getVoteAccounts
+# isBlockhashValid
+# minimumLedgerSlot
+# requestAirdrop
+# sendTransaction
+# simulateTransaction
 end
 
 class SOLAPI
@@ -203,12 +350,201 @@ class SOLAPI
     self.class.post "/", body: body.to_json, headers: @headers
   end
 
-  # getEpochSchedule
-  # getFeeForMessage
-  # getFirstAvailableBlock
-  # getGenesisHash
-  # getHealth
-  # getHighestSnapshotSlot
+  # FIX
+  def get_fee_for_message(msg)
+    body = @bodyt.merge({
+      method: "getFeeForMessage",
+      params: [msg]
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_first_available_block
+    body = @bodyt.merge({
+      method: "getFirstAvailableBlock"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_genesis_hash
+    body = @bodyt.merge({
+      method: "getGenesisHash"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_health
+    body = @bodyt.merge({
+      method: "getHealth"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_highest_snapshot_slot
+    body = @bodyt.merge({
+      method: "getHighestSnapshotSlot"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_identity
+    body = @bodyt.merge({
+      method: "getIdentity"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_inflation_governor
+    body = @bodyt.merge({
+      method: "getInflationGovernor"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_inflation_rate
+    body = @bodyt.merge({
+      method: "getInflationRate"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_inflation_reward
+    body = @bodyt.merge({
+      method: "getInflationReward"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_largest_accounts
+    body = @bodyt.merge({
+      method: "getLargestAccounts"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_largest_blockhash
+    body = @bodyt.merge({
+      method: "getLargestBlockhash"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_leader_schedule
+    body = @bodyt.merge({
+      method: "getLeaderSchedule"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_max_retransmit_slot
+    body = @bodyt.merge({
+      method: "getMaxRetransmitSlot"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_max_shred_insert_slot
+    body = @bodyt.merge({
+      method: "getMaxShredInsertSlot"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_minimum_balance_for_rent_exemption
+    body = @bodyt.merge({
+      method: "getMinimumBalanceForRentExemption"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_multiple_accounts(pubkeys)
+    body = @bodyt.merge({
+      method: "getMultipleAccounts",
+      params: [pubkeys]
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_program_accounts(pubk)
+    body = @bodyt.merge({
+      method: "getProgramAccounts",
+      params: [pubk]
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_recent_performance_samples
+    body = @bodyt.merge({
+      method: "getRecentPerformanceSamples"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_recent_prioritization_fees
+    body = @bodyt.merge({
+      method: "getRecentPrioritizationFees"
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_signature_statuses(sigs)
+    body = @bodyt.merge({
+      method: "getSignatureStatuses",
+      params: [sigs]
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+  def get_signatures_for_address(addr)
+    body = @bodyt.merge({
+      method: "getSignaturesForAddress",
+      params: addr
+    })
+
+    self.class.post "/", body: body.to_json, headers: @headers
+  end
+
+# getSignaturesForAddress
+# getSlot
+# getSlotLeader
+# getSlotLeaders
+# getStakeActivation
+# getStakeMinimumDelegation
+# getSupply
+# getTokenAccountBalance
+# getTokenAccountsByDelegate
+# getTokenAccountsByOwner
+# getTokenLargestAccounts
+# getTokenSupply
+# getTransaction
+# getTransactionCount
+# getVersion
+# getVoteAccounts
+# isBlockhashValid
+# minimumLedgerSlot
+# requestAirdrop
+# sendTransaction
+# simulateTransaction
 end
 
 SOLCLI.start(ARGV)
